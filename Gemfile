@@ -26,7 +26,6 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'jquery-ui-rails'
 gem 'just-datetime-picker'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 
 # Images
