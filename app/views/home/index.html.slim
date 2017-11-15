@@ -1,0 +1,23 @@
+br
+- if current_user.nil?
+  h1.text-center Добро пожаловать в Тэсонэро Компьютерс
+- else
+  h1 All Users
+
+  table.table.table-striped
+    thead.thead-inverse
+      tr
+        th #
+        th First Name
+        th Surname
+        th Date Of Birth
+        th Role
+
+    tbody
+      - @users.each_with_index do |user, idx|
+        tr
+          th scope="row"  #{idx + 1}
+          td = user.name
+          td = user.surname
+          td = user.birthday
+          td = user.roles.pluck(:name)[0].capitalize
