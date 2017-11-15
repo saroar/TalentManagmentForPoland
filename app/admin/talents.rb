@@ -1,7 +1,7 @@
 ActiveAdmin.register Talent do
   permit_params :id, :surname, :given_name, :status, :place_of_birth, :date_of_birth,
                 :date_of_issue, :date_of_expiry, :passport_copy,
-                :starting_payment, :due_payment, :case_number, :casepassword :user_id
+                :starting_payment, :due_payment, :case_number, :casepassword, :user_id
 
   collection_action :download_pdf, method: :get do
 
