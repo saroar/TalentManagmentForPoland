@@ -22,7 +22,7 @@ ActiveAdmin.register Talent do
     column :surname
     column :date_of_expiry
     column :case_number
-    calumn :casepass
+    column :casepassword
 
     column "Download" do |resource|
       links = ''.html_safe
