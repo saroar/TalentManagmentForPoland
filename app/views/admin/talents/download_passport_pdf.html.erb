@@ -1,14 +1,16 @@
 <br>
 <%= image_tag resource.passport_copy.normal %>
 <br>
+
 <h5>If you need download click this link <%= resource.passport_copy.url  %></h5>
 
 <ul>
-  <h1>Status: <%= resource.status %></h1>
-  <h1>GivenName: <%= resource.given_name %></h1>
-  <h1>Surname: <%= resource.surname%></h1>
-  <h1>Place Of Birth: <%= resource.place_of_birth %></h1>
-  <h1>Date Of Birth: <%= resource.date_of_birth%></h1>
-  <h1>Passport Date Of Issue: <%= resource.try(:date_of_issue) %></h1>
-  <h1>Passport Date Of Expiry: <%= resource.try(:date_of_expiry)%></h1>
+  <h2>Status: <%= resource.status %></h2>
+  <h2>GivenName: <%= resource.given_name %></h2>
+  <h2>Surname: <%= resource.surname%></h2>
+  <h2>Place Of Birth: <%= resource.place_of_birth %></h2>
+  <h2>Date Of Birth: <%= resource.date_of_birth%></h2>
+  <h2>Passport Date Of Issue: <%= resource.try(:date_of_issue) %></h2>
+  <h2>Passport Date Of Expiry: <%= resource.try(:date_of_expiry)%></h2>
 </ul>
+
