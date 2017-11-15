@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-    <%- if current_user.has_role? :admin || :consultant || :talentcouch  %>
+    <% if current_user.has_role? :admin or :consultant or :talentcouch  %>
         <li><%= link_to 'Admin', admin_dashboard_path %></li>
     <% end %>
 

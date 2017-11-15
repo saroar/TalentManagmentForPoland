@@ -6,6 +6,9 @@ ActiveAdmin.register User do
   index download_links: false do
     column :name
     column :surname
+    column :roles do | user |
+      user.roles.first unless user.roles.blank?
+    end
     actions
   end
 

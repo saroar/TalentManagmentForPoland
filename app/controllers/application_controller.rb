@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
 
   def authenticate_active_admin_user!
     authenticate_user!
-    unless current_user.has_role? :admin || :talentcouch || :consultant
+    unless current_user.has_role? :admin or :talentcouch or :consultant
       flash[:notice] = 'Sorry you are not Authorized to access this resource!'
       redirect_to root_path
     end
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.has_role? :admin || :talentcouch || :consultant
+    if current_user.has_role? :admin or :talentcouch or :consultant
       admin_dashboard_path
     else
       root_path

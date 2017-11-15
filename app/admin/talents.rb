@@ -1,7 +1,7 @@
 ActiveAdmin.register Talent do
   permit_params :id, :surname, :given_name, :status, :place_of_birth, :date_of_birth,
                 :date_of_issue, :date_of_expiry, :passport_copy,
-                :starting_payment, :due_payment, :case_number, :user_id
+                :starting_payment, :due_payment, :case_number, :casepassword :user_id
 
   collection_action :download_pdf, method: :get do
 
@@ -21,6 +21,8 @@ ActiveAdmin.register Talent do
     column :given_name
     column :surname
     column :date_of_expiry
+    column :case_number
+    calumn :casepass
 
     column "Download" do |resource|
       links = ''.html_safe
@@ -43,6 +45,7 @@ ActiveAdmin.register Talent do
       f.input :starting_payment unless current_user.has_role? :consultant
       f.input :due_payment unless current_user.has_role? :consultant
       f.input :case_number
+      f.input :casepassword
       f.input :status, as: :select, collection: Talent.statuses.keys, selected: "pending"
       f.input :user_id, :label => 'User', :as => :select,
               :collection => User.all.map{|u| ["#{u.surname}", u.id]},
