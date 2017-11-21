@@ -15,12 +15,12 @@ ActiveAdmin.register Talent do
               :disposition => "attachment", :page_size=> "A4"
   end
 
-  scope_to :current_user, unless: proc{ current_user.has_role? :admin }
+  scope_to :current_user, unless: proc{ current_user.has_role? :admin && :consultant }
 
   index  download_links: proc{ current_user.has_role? :admin } do
     column "CouchName" do |resource|
       "#{resource.user.try(:name)}"
-    end
+    end unless current_user.has_role? :admin
 
     column :status
     column :given_name
