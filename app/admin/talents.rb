@@ -15,6 +15,7 @@ ActiveAdmin.register Talent do
               :disposition => "attachment", :page_size=> "A4"
   end
 
+  scope_to :current_user, unless: proc{ current_user.has_role? :admin }
 
   index  download_links: proc{ current_user.has_role? :admin } do
     column :status
@@ -48,7 +49,7 @@ ActiveAdmin.register Talent do
       f.input :casepassword
       f.input :status, as: :select, collection: Talent.statuses.keys, selected: "pending"
       f.input :user_id, :label => 'User', :as => :select,
-              :collection => User.all.map{|u| ["#{u.surname}", u.id]},
+              :collection => User.all.map{|u| ["#{u.surname} #{u.name}", u.id]},
               selected: current_user.id , :input_html => { class: 'hideinput'}
     end
     f.actions
