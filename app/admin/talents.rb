@@ -18,6 +18,10 @@ ActiveAdmin.register Talent do
   scope_to :current_user, unless: proc{ current_user.has_role? :admin }
 
   index  download_links: proc{ current_user.has_role? :admin } do
+    column :user do |u|
+      "#{u.try(:surname)} #{u.try(:name)}"
+    end
+
     column :status
     column :given_name
     column :surname
@@ -39,9 +43,9 @@ ActiveAdmin.register Talent do
       f.input :surname, label: "Given Name/First Name"
       f.input :given_name, label: "Surname/Last Name"
       f.input :place_of_birth
-      f.input :date_of_birth, start_year: 1900
-      f.input :date_of_issue, start_year: 1900, label: "Passport Date Of Issue"
-      f.input :date_of_expiry, start_year: 1900, label: "Passport Date Of Expiry"
+      f.input :date_of_birth, start_year: 1970
+      f.input :date_of_issue, start_year: 1970, label: "Passport Date Of Issue"
+      f.input :date_of_expiry, start_year: 1970, label: "Passport Date Of Expiry"
       f.input :passport_copy, :as => :file
       f.input :starting_payment unless current_user.has_role? :consultant
       f.input :due_payment unless current_user.has_role? :consultant
