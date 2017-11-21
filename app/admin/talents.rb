@@ -18,8 +18,8 @@ ActiveAdmin.register Talent do
   scope_to :current_user, unless: proc{ current_user.has_role? :admin }
 
   index  download_links: proc{ current_user.has_role? :admin } do
-    column :user do |u|
-      "#{u.try(:surname)} #{u.try(:name)}"
+    column "CouchName" do |resource|
+      "#{resource.user.try(:name)}"
     end
 
     column :status
