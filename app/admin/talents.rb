@@ -15,6 +15,8 @@ ActiveAdmin.register Talent do
               :disposition => "attachment", :page_size=> "A4"
   end
 
+  config.sort_order = "status"
+
   scope_to :current_user, unless: proc{ current_user.has_role? :admin or :consultant }
 
   index  download_links: proc{ current_user.has_role? :admin } do
@@ -68,8 +70,8 @@ ActiveAdmin.register Talent do
       row :given_name
       row :date_of_birth
       row :place_of_birth
-      row 'Passport Date Of Expiry' do |dob|
-        dob.date_of_expiry
+      row 'Passport Date Of Expiry' do |doe|
+        doe.date_of_expiry
       end
       row :starting_payment unless current_user.has_role? :consultant
       row :due_payment unless current_user.has_role? :consultant
