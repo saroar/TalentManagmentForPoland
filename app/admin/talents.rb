@@ -23,8 +23,8 @@ ActiveAdmin.register Talent do
     end unless current_user.has_role? :admin
 
     column :status
-    column :given_name
     column :surname
+    column :given_name
     column :date_of_expiry
     column :case_number
     column :casepassword
@@ -40,10 +40,10 @@ ActiveAdmin.register Talent do
 
   form do |f|
     f.inputs 'User Details' do
-      f.input :surname, label: "Given Name/First Name"
-      f.input :given_name, label: "Surname/Last Name"
-      f.input :place_of_birth
+      f.input :surname, label: "Surname/First Name"
+      f.input :given_name, label: "Given Name/Last Name"
       f.input :date_of_birth, start_year: 1970
+      f.input :place_of_birth
       f.input :date_of_issue, start_year: 1970, label: "Passport Date Of Issue"
       f.input :date_of_expiry, start_year: 1970, label: "Passport Date Of Expiry"
       f.input :passport_copy, :as => :file
