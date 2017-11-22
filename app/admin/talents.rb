@@ -56,9 +56,26 @@ ActiveAdmin.register Talent do
       f.input :status, as: :select, collection: Talent.statuses.keys, selected: "pending"
       f.input :user_id, :label => 'User', :as => :select,
               :collection => User.all.map{|u| ["#{u.surname} #{u.name}", u.id]},
-              selected: current_user.id , :input_html => { class: 'hideinput'}
+              selected: current_user.id , :input_html => { class: 'hideinput'} unless current_user.has_role? :consultant
     end
     f.actions
+  end
+
+  show do
+    h1 talent.status
+    attributes_table do
+      row :surname
+      row :given_name
+      row :date_of_birth
+      row :place_of_birth
+      row 'Passport Date Of Expiry' do |dob|
+        dob.date_of_expiry
+      end
+      row :starting_payment unless current_user.has_role? :consultant
+      row :due_payment unless current_user.has_role? :consultant
+      row :case_number
+      row :casepassword
+    end
   end
 end
 
