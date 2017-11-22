@@ -15,7 +15,7 @@ ActiveAdmin.register Talent do
               :disposition => "attachment", :page_size=> "A4"
   end
 
-  scope_to :current_user, unless: proc{ current_user.has_role? :admin && :consultant }
+  scope_to :current_user, unless: proc{ current_user.has_role? :admin or :consultant }
 
   index  download_links: proc{ current_user.has_role? :admin } do
     column "CouchName" do |resource|
@@ -56,7 +56,7 @@ ActiveAdmin.register Talent do
       f.input :status, as: :select, collection: Talent.statuses.keys, selected: "pending"
       f.input :user_id, :label => 'User', :as => :select,
               :collection => User.all.map{|u| ["#{u.surname} #{u.name}", u.id]},
-              selected: current_user.id , :input_html => { class: 'hideinput'} unless current_user.has_role? :admin && :consultant
+              selected: current_user.id , :input_html => { class: 'hideinput'} unless current_user.has_role? :admin or :consultant
     end
     f.actions
   end
