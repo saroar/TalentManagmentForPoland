@@ -20,12 +20,14 @@ ActiveAdmin.register Talent do
   index  download_links: proc{ current_user.has_role? :admin } do
     column "CouchName" do |resource|
       "#{resource.user.try(:name)}"
-    end unless current_user.has_role? :admin
+    end if current_user.has_role? :admin
 
     column :status
     column :surname
     column :given_name
     column :date_of_expiry
+    column :starting_payment unless current_user.has_role? :consultant
+    column :due_payment unless current_user.has_role? :consultant
     column :case_number
     column :casepassword
 
