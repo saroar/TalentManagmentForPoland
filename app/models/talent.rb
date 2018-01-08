@@ -1,5 +1,5 @@
 class Talent < ApplicationRecord
-  enum status: [ :pending, :processing, :start, :done, :refuse ]
+  enum status: [ :pending, :processing, :start, :visa_appointment, :done, :refuse ]
   enum relationship_status: [ :single, :married ]
   mount_uploader :passport_copy, ImageUploader
   belongs_to :user, :class_name => "User", :foreign_key => "user_id"
