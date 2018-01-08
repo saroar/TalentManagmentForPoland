@@ -1,7 +1,8 @@
 ActiveAdmin.register Talent do
   permit_params :id, :surname, :given_name, :status, :place_of_birth, :date_of_birth,
                 :date_of_issue, :date_of_expiry, :passport_copy,
-                :starting_payment, :due_payment, :case_number, :casepassword, :user_id
+                :starting_payment, :due_payment, :case_number,
+                :casepassword, :user_id, :email, :postal, :mobile_number, :relationship_status
 
   collection_action :download_pdf, method: :get do
 
@@ -27,6 +28,10 @@ ActiveAdmin.register Talent do
     column :status
     column :surname
     column :given_name
+    column :mobile_number
+    column :email
+    column :postal
+    column :relationship_status
     column :date_of_expiry
     column :starting_payment unless current_user.has_role? :consultant
     column :due_payment unless current_user.has_role? :consultant
@@ -48,6 +53,10 @@ ActiveAdmin.register Talent do
       f.input :given_name, label: "Given Name/Last Name"
       f.input :date_of_birth, start_year: 1970
       f.input :place_of_birth
+      f.input :mobile_number
+      f.input :email
+      f.input :postal
+      f.input :relationship_status
       f.input :date_of_issue, start_year: 1970, label: "Passport Date Of Issue"
       f.input :date_of_expiry, start_year: 1970, label: "Passport Date Of Expiry"
       f.input :passport_copy, :as => :file
