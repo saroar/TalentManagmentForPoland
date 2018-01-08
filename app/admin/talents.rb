@@ -84,6 +84,10 @@ ActiveAdmin.register Talent do
       end
       row :starting_payment unless current_user.has_role? :consultant
       row :due_payment unless current_user.has_role? :consultant
+      row :mobile_number
+      row :email
+      row :postal
+      row :relationship_status
       row :case_number
       row :casepassword
     end
