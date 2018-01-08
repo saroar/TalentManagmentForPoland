@@ -56,7 +56,7 @@ ActiveAdmin.register Talent do
       f.input :mobile_number
       f.input :email
       f.input :postal
-      f.input :relationship_status
+      f.input :relationship_status, as: :select, collection: Talent.relationship_statuses.keys, selected: "single"
       f.input :date_of_issue, start_year: 1970, label: "Passport Date Of Issue"
       f.input :date_of_expiry, start_year: 1970, label: "Passport Date Of Expiry"
       f.input :passport_copy, :as => :file
